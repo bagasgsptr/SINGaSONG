@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Bagas Saputro (Nyanyi)</title>
+  <meta name="description" content="Portfolio musik dan video nyanyian Bagas Saputro" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#071226; --bg-2:#071a2e; --card:#081423; --glass: rgba(255,255,255,0.04);
+      --accent:#7c3aed; --accent-2:#06b6d4; --muted:#9fb0c7; --glass-2: rgba(255,255,255,0.03);
+      --radius:14px; --container:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:#e6eef7;-webkit-font-smoothing:antialiased;}
+
+    .wrap{max-width:var(--container);margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:66px;height:66px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#041024;font-size:20px;box-shadow:0 8px 30px rgba(15,23,42,0.6)}
+    h1{margin:0;font-size:20px}
+    .sub{color:var(--muted);font-size:13px;margin-top:4px}
+
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;padding:10px 14px;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(124,58,237,0.16)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:22px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6);}
+    .about h2{margin:0 0 8px 0}
+    .lead{color:var(--muted);line-height:1.45}
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .tag{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+
+    .contact-card{display:flex;flex-direction:column;gap:10px}
+    .contact-card a{display:inline-block;text-decoration:none}
+
+    /* Gallery */
+    .gallery{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .video-thumb{position:relative;border-radius:12px;overflow:hidden;background:#000;cursor:pointer;transition:transform .22s ease,box-shadow .22s;border:1px solid rgba(255,255,255,0.03)}
+    .video-thumb:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+    .video-thumb .thumb-media{width:100%;height:180px;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center}
+    .video-thumb .overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:space-between;padding:12px}
+    .meta{backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.5));padding:8px 10px;border-radius:10px;color:#fff;font-weight:600}
+
+    .play-btn{width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06)}
+    .play-btn svg{filter:drop-shadow(0 4px 10px rgba(2,6,23,0.6))}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.75);display:flex;align-items:center;justify-content:center;padding:20px;z-index:60;opacity:0;pointer-events:none;transition:opacity .18s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal-card{width:min(980px,96%);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .modal video, .modal iframe{width:100%;height:520px;border-radius:10px;background:#000}
+    .modal .meta-area{color:var(--muted);font-size:13px}
+
+    .controls{display:flex;gap:8px}
+
+    footer{text-align:center;color:var(--muted);margin-top:26px;font-size:13px}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr}} 
+    @media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:540px){.gallery{grid-template-columns:repeat(1,1fr)} .video-thumb .thumb-media{height:200px}}
+
+    /* small helpers */
+    .row{display:flex;gap:10px;align-items:center}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="">
+            <img src="img/gambar.png" alt="bagas" width="60"  class="rounded-circle img-thumbnail">
+        </div>
+        <div>
+          <h1>Bagas Gusti Saputro</h1>
+          <div class="sub">Cover Accoustic</div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card about">
+          <h2>Tentang Saya</h2>
+          <p class="lead">Hai, saya Bagas Gusti Saputro. Saya menyukai aransemen sederhana, vokal hangat, dan membuat cover akustik. Halaman ini menampilkan koleksi rekaman video di handphone saya. Klik thumbnail untuk memutar di pemutar besar, atau tekan tombol download untuk menyimpan file.</p>
+
+          <div class="tags" aria-hidden>
+            <span class="tag">Vokal</span>
+            <span class="tag">Gitar Akustik</span>
+            <span class="tag">Cover</span>
+          </div>
+
+          <div style="margin-top:14px">
+            <h3 style="margin:0 0 8px 0">Peralatan</h3>
+            <div class="row">
+              <div class="muted">Gitar : Yamaha FX310
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="card contact-card">
+          <div>
+            <strong>Contact</strong>
+            <div class="muted" style="margin-top:6px">Email: <a href="mailto:bagas@example.com" style="color:inherit; text-decoration:underline">bagassaputro0604@gmail.com</a><br/>IG: <a href="https://www.instagram.com/bagasgsptr_/" target="_blank" style="color:inherit; text-decoration:underline">@bagassaputro</a></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h2 style="margin:0 0 12px 0">Galeri Video</h2>
+
+        <p class="muted" style="margin:0 0 12px 0">Klik thumbnail untuk buka pemutar.Selamat Menikmati Gaesssss</p>
+
+        <div class="gallery" id="gallery">
+
+          <!-- Local file example: ganti 'sing1.mp4' dengan file milik Anda -->
+          <div class="video-thumb" data-src="lagu1.mp4" data-type="video" data-title="Seventeen - Yang Telah Merelakanmu">
+            <div class="thumb-media" style="background-image:linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)), url('thumbs/lagu1.jpg')"></div>
+            <div class="overlay">
+              <div class="meta">Seventeen - Yang Telah Merelakanmu</div>
+              <div class="play-btn" aria-hidden>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v18l15-9L5 3z" fill="white"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-thumb" data-src="lagu2.mp4" data-type="video" data-title="Live — Lagu B">
+            <div class="thumb-media" style="background-image:linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)), url('thumbs/lagu2.jpg')"></div>
+            <div class="overlay">
+              <div class="meta">T2 - Lelaki Cadangan</div>
+              <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v18l15-9L5 3z" fill="white"/></svg></div>
+            </div>
+          </div>
+
+          <div class="video-thumb" data-src="lagu3.mp4" data-type="video" data-title="Live — Lagu B">
+            <div class="thumb-media" style="background-image:linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)), url('thumbs/lagu3.jpg')"></div>
+            <div class="overlay">
+              <div class="meta">Seventeen - Selalu Mengalah</div>
+              <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v18l15-9L5 3z" fill="white"/></svg></div>
+            </div>
+          </div>
+          <!-- Tambah lebih banyak video sesuai kebutuhan -->
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- modal player -->
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <div id="modalTitle" style="font-weight:700">Judul video</div>
+            <div class="meta-area muted" id="modalSub">Deskripsi singkat — 00:00</div>
+          </div>
+
+          <div class="controls">
+            <button class="btn ghost" id="btnDownload">Download</button>
+            <button class="btn" id="btnClose">Tutup</button>
+          </div>
+        </div>
+        <div id="modalBody" style="margin-top:12px"></div>
+      </div>
+    </div>
+
+    <footer>© <span id="year"></span> Bagas Gusti Saputro — All rights reserved.</footer>
+  </div>
+
+  <script>
+    // Script interaksi — sudah dioptimalkan
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modalBody');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSub = document.getElementById('modalSub');
+    const btnClose = document.getElementById('btnClose');
+    const btnDownload = document.getElementById('btnDownload');
+
+    // Accessibility: allow keyboard focus and activation
+    gallery.querySelectorAll('.video-thumb').forEach((node)=>{
+      node.setAttribute('tabindex','0');
+      node.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') node.click(); });
+    });
+
+    gallery.addEventListener('click', (e)=>{
+      const thumb = e.target.closest('.video-thumb');
+      if(!thumb) return;
+      const src = thumb.getAttribute('data-src');
+      const type = thumb.getAttribute('data-type') || 'video';
+      const title = thumb.getAttribute('data-title') || '';
+      openModal({src,type,title});
+    });
+
+    function openModal({src,type,title}){
+      modal.classList.add('open');
+      modalTitle.textContent = title || '';
+      modalSub.textContent = (type === 'iframe') ? 'YouTube/Vimeo Embed' : 'File lokal (MP4)';
+      modalBody.innerHTML = '';
+      btnDownload.style.display = 'none';
+
+      if(type === 'iframe'){
+        const iframe = document.createElement('iframe');
+        iframe.width = '100%'; iframe.height = '520'; iframe.src = src + '?rel=0&autoplay=1';
+        iframe.allow = 'autoplay; encrypted-media; fullscreen'; iframe.style.border = '0';
+        modalBody.appendChild(iframe);
+        // no download for iframe
+      } else {
+        const video = document.createElement('video');
+        video.src = src; video.controls = true; video.autoplay = true; video.playsInline = true;
+        video.style.width = '100%'; video.style.height = '520px'; video.preload = 'metadata';
+        modalBody.appendChild(video);
+        btnDownload.style.display = 'inline-block';
+        btnDownload.onclick = ()=>downloadFile(src);
+
+        // show duration when metadata loaded
+        video.addEventListener('loadedmetadata', ()=>{
+          const dur = formatTime(video.duration);
+          modalSub.textContent = `Durasi: ${dur}`;
+        });
+      }
+
+      // focus trap basic
+      setTimeout(()=> btnClose.focus(), 240);
+    }
+
+    function closeModal(){
+      // pause and remove media
+      const vid = modalBody.querySelector('video');
+      if(vid){ try{ vid.pause(); vid.currentTime = 0; }catch(e){} }
+      modal.classList.remove('open');
+      modalBody.innerHTML = '';
+    }
+    btnClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+    function downloadFile(url){
+      const a = document.createElement('a'); a.href = url; a.download = url.split('/').pop(); document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    function formatTime(sec){
+      if(!isFinite(sec)) return '00:00';
+      const s = Math.floor(sec%60).toString().padStart(2,'0');
+      const m = Math.floor((sec/60)%60).toString().padStart(2,'0');
+      const h = Math.floor(sec/3600);
+      return h? `${h}:${m}:${s}` : `${m}:${s}`;
+    }
+
+    // quick CV download (client-side)
+    document.getElementById('btCV').addEventListener('click', ()=>{
+      const txt = `CV - Bagas Saputro
+
+Email: bagas@example.com
+Skills: Vokal, Gitar, Produksi Dasar
+Kontak: bagas@example.com`;
+      const blob = new Blob([txt], {type:'text/plain'}); const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'CV-Bagas-Saputro.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // small UX: lazy preview play on hover for thumbs that are video files (only if thumb contains real poster/video tag)
+    document.querySelectorAll('.video-thumb').forEach(t => {
+      t.addEventListener('pointerenter', ()=>{
+        // try to preload poster image if exists (thumbs/...) — browser handles caching
+      });
+    });
+
+    // TIPS for you (lihat komentar di file):
+    // 1) Letakkan file video (.mp4) di folder yang sama dan gunakan nama yang sama dengan data-src.
+    // 2) Siapkan folder 'thumbs' yang berisi gambar preview (sing1.jpg dll.) untuk tampilan yang lebih menarik.
+    // 3) Untuk menambahkan video YouTube gunakan data-type="iframe" dan data-src berisi link embed (https://www.youtube.com/embed/VIDEO_ID).
+
+  </script>
+</body>
+</html>
